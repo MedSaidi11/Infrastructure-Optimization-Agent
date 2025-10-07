@@ -1,0 +1,15 @@
+[project]
+name = "devotest"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.4"
+dependencies = [
+    "fastmcp>=2.12.4",
+    "langchain-mistralai>=0.2.12",
+    "langgraph>=0.6.8",
+    "loguru>=0.7.3",
+    "pandas>=2.3.3",
+    "smolagents[litellm,mcp]>=1.22.0",
+    "gradio>=4.0.0",
+]
