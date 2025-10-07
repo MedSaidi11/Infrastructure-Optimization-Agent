@@ -34,8 +34,8 @@ if __name__ == "__main__":
     
     with open("output.json", "w") as f:
         output = {
-            **final_state.get("anomalies_json"),
-            **final_state.get("optimizations_json"),
+            "anomalies": final_state.get("anomalies_json"),
+            "optimizations": final_state.get("optimizations_json")
         }
         json.dump(output, f, indent=4)
     
