@@ -53,7 +53,7 @@ class AgenticPipeline:
                 ]
                 llm_with_structured_output = self.llm.with_structured_output(Anomalies)
                 result = llm_with_structured_output.invoke(prompt)
-                state["anomalies_json"] = result.model_dump()  # Stocke comme dict, pas comme string JSON
+                state["anomalies_json"] = result.model_dump()
                 state["current_step"] = "anomalies_detected"
                 logger.success("Anomalies analysis completed")
             else:
@@ -88,7 +88,7 @@ class AgenticPipeline:
                 ]
                 llm_with_structured_output = self.llm.with_structured_output(Recommendations)
                 result = llm_with_structured_output.invoke(prompt)
-                state["optimizations_json"] = result.model_dump()  # Stocke comme dict, pas comme string JSON
+                state["optimizations_json"] = result.model_dump()
                 state["current_step"] = "optimizations_proposed"
                 logger.success("Optimization recommendations generated")
             else:
@@ -112,7 +112,7 @@ class AgenticPipeline:
         if state["anomalies_json"]:
             logger.info("\n ANOMALIES DETECTED:")
             try:
-                anomalies_data = state["anomalies_json"]  # Déjà un dict, pas besoin de json.loads
+                anomalies_data = state["anomalies_json"]
                 logger.info(f"   Summary: {anomalies_data.get('summary', 'N/A')}")
                 logger.info(f"   Number of anomalies: {len(anomalies_data.get('anomalies', []))}")
                 logger.info(f"   Full JSON: {json.dumps(anomalies_data, indent=2)}")
@@ -122,7 +122,7 @@ class AgenticPipeline:
         if state["optimizations_json"]:
             logger.info("\n OPTIMIZATION RECOMMENDATIONS:")
             try:
-                opt_data = state["optimizations_json"]  # Déjà un dict, pas besoin de json.loads
+                opt_data = state["optimizations_json"] 
                 logger.info(f"   Summary: {opt_data.get('summary', 'N/A')}")
                 logger.info(f"   Number of recommendations: {len(opt_data.get('recommendations', []))}")
                 logger.info(f"   Full JSON: {json.dumps(opt_data, indent=2)}")
